@@ -9,38 +9,41 @@ export default class ProductManager {
     if (fs.existsSync(this.path)) {
       const data = await fs.promises.readFile(this.path, "utf-8");
       const result = JSON.parse(data);
-      console.log(result);
       return result;
     } else {
       return [];
     }
   };
   addProduct = async (title, description, price, thumbnail, code, stock) => {
-    if (this.#codeIndex(code) === -1) {
-      const product = {
-        title,
-        description,
-        price,
-        thumbnail,
-        code,
-        stock,
-        id: this.products.length + 1,
-      };
-      this.products.push(product);
-      await fs.promises.writeFile(
-        this.path,
-        JSON.stringify(this.products, null, "\t")
-      );
-      return product;
+    const products = await this.getProducts();
+    if ((!title, !description, !price, !thumbnail, !code, !stock)) {
+      console.error("Please complete all product fields.");
+      return;
     } else {
-      console.error(`Product with code : "${code}" already exists.`);
-      return null;
+      if (this.#codeIndex(products, code) === -1) {
+        const product = {
+          title,
+          description,
+          price,
+          thumbnail,
+          code,
+          stock,
+          id: products.length + 1,
+        };
+        products.push(product);
+        await fs.promises.writeFile(
+          this.path,
+          JSON.stringify(products, null, "\t")
+        );
+        return products;
+      } else {
+        console.error(`Product with code : "${code}" already exists`);
+        return;
+      }
     }
   };
-  #codeIndex = (code) => {
-    const codeIndex = this.products.findIndex(
-      (product) => product.code === code
-    );
+  #codeIndex = (array, code) => {
+    const codeIndex = array.findIndex((product) => product.code === code);
     return codeIndex;
   };
   findProduct = async (productId) => {
@@ -61,48 +64,50 @@ export default class ProductManager {
   };
   getProductById = async (productId) => {
     const search = await this.findProduct(productId);
-    if (fs.existsSync(this.path)) {
-      const data = await fs.promises.readFile(this.path, "utf-8");
-      const result = JSON.parse(data);
-
-      return console.log(result[search]);
-    }
+    const products = await this.getProducts();
+    return products[search];
   };
   deleteProduct = async (productId) => {
     const search = await this.findProduct(productId);
-    if (fs.existsSync(this.path)) {
-      const data = await fs.promises.readFile(this.path, "utf-8");
-      const result = JSON.parse(data);
+    const products = await this.getProducts();
 
-      result.splice(search, 1);
+    if (!search) {
+      return products;
+    } else {
+      products.splice(search, 1);
       await fs.promises.writeFile(
         this.path,
-        JSON.stringify(result, null, "\t")
+        JSON.stringify(products, null, "\t")
       );
-      return;
+      return products;
     }
   };
-  updateProduct = async (id, description, price, thumbnail, code, stock) => {
+
+  updateProduct = async (
+    id,
+    title,
+    description,
+    price,
+    thumbnail,
+    code,
+    stock
+  ) => {
     const search = await this.findProduct(id);
-    if (fs.existsSync(this.path)) {
-      const data = await fs.promises.readFile(this.path, "utf-8");
-      const result = JSON.parse(data);
-      const producto = {
-        description: description ?? result[search].description,
-        price: price ?? result[search].price,
-        thumbnail: thumbnail ?? result[search].thumbnail,
-        code: code ?? result[search].code,
-        stock: stock ?? result[search].stock,
-        id: id,
-      };
-      result[search] = producto;
-      await fs.promises.writeFile(
-        this.path,
-        JSON.stringify(result, null, "\t")
-      );
-      return;
-    } else {
-      return console.error(`The product with id: ${id} does not exist.`);
-    }
+    const products = await this.getProducts();
+    const product = {
+      title: title ?? result[search].title,
+      description: description ?? result[search].description,
+      price: price ?? result[search].price,
+      thumbnail: thumbnail ?? result[search].thumbnail,
+      code: code ?? result[search].code,
+      stock: stock ?? result[search].stock,
+      id: id,
+    };
+    products[search] = product;
+    await fs.promises.writeFile(
+      this.path,
+      JSON.stringify(products, null, "\t")
+    );
+    return products;
   };
 }
