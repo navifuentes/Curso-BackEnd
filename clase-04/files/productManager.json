@@ -1,11 +1,20 @@
 [
 	{
-		"title": "objeto prueba",
-		"description": "este es un objeto prueba",
+		"title": "pera de prueba",
+		"description": "esta es una pera de prueba",
 		"price": 200,
 		"thumbnail": "sin imagen",
-		"code": "abc123",
+		"code": "pera123",
 		"stock": 25,
-		"id": 1
+		"id": 2
+	},
+	{
+		"title": "naranja de prueba",
+		"description": "esta es una naranja de prueba",
+		"price": 200,
+		"thumbnail": "sin imagen",
+		"code": "naranja123",
+		"stock": 25,
+		"id": 3
 	}
 ]

@@ -56,7 +56,7 @@ export default class ProductManager {
       );
       if (productIndex === -1) {
         console.error(`The Product with ID : "${productId}" does not exist.`);
-        return false;
+        return productIndex;
       } else {
         return productIndex;
       }
@@ -71,15 +71,15 @@ export default class ProductManager {
     const search = await this.findProduct(productId);
     const products = await this.getProducts();
 
-    if (!search) {
-      return products;
+    if (search === -1) {
+      return;
     } else {
       products.splice(search, 1);
       await fs.promises.writeFile(
         this.path,
         JSON.stringify(products, null, "\t")
       );
-      return products;
+      return console.log("Product deleted successfully !");
     }
   };
 
@@ -108,6 +108,6 @@ export default class ProductManager {
       this.path,
       JSON.stringify(products, null, "\t")
     );
-    return products;
+    return console.log("Product updated successfully !");
   };
 }
