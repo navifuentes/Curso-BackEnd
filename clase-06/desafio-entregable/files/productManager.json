@@ -1,0 +1,92 @@
+[
+	{
+		"title": "naranja de prueba",
+		"description": "esta es una naranja de prueba",
+		"price": 200,
+		"thumbnail": "sin imagen",
+		"code": "naranja123",
+		"stock": 25,
+		"id": 1
+	},
+	{
+		"title": "Manzana de prueba",
+		"description": "esta es una manzana de prueba",
+		"price": 200,
+		"thumbnail": "sin imagen",
+		"code": "manzana123",
+		"stock": 25,
+		"id": 2
+	},
+	{
+		"title": "Pera de prueba",
+		"description": "esta es una pera de prueba",
+		"price": 200,
+		"thumbnail": "sin imagen",
+		"code": "pera123",
+		"stock": 25,
+		"id": 3
+	},
+	{
+		"title": "Sandia de prueba",
+		"description": "esta es una Sandia de prueba",
+		"price": 200,
+		"thumbnail": "sin imagen",
+		"code": "Sandia123",
+		"stock": 25,
+		"id": 4
+	},
+	{
+		"title": "Melon de prueba",
+		"description": "esta es una Melon de prueba",
+		"price": 200,
+		"thumbnail": "sin imagen",
+		"code": "Melon123",
+		"stock": 25,
+		"id": 5
+	},
+	{
+		"title": "Uva de prueba",
+		"description": "esta es una Uva de prueba",
+		"price": 200,
+		"thumbnail": "sin imagen",
+		"code": "Uva123",
+		"stock": 25,
+		"id": 6
+	},
+	{
+		"title": "Pomelo de prueba",
+		"description": "esta es una Pomelo de prueba",
+		"price": 200,
+		"thumbnail": "sin imagen",
+		"code": "Pomelo123",
+		"stock": 25,
+		"id": 7
+	},
+	{
+		"title": "Frutilla de prueba",
+		"description": "esta es una Frutilla de prueba",
+		"price": 200,
+		"thumbnail": "sin imagen",
+		"code": "Frutilla123",
+		"stock": 25,
+		"id": 8
+	},
+	{
+		"title": "Mandarina de prueba",
+		"description": "esta es una Mandarina de prueba",
+		"price": 200,
+		"thumbnail": "sin imagen",
+		"code": "Mandarina123",
+		"stock": 25,
+		"id": 9
+	},
+	{
+		"title": "Banana de prueba",
+		"description": "esta es una Banana de prueba",
+		"price": 200,
+		"thumbnail": "sin imagen",
+		"code": "Banana123",
+		"stock": 25,
+		"id": 10
+	}
+]
