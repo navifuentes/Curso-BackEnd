@@ -6,25 +6,37 @@ import { error } from "console";
 const app = express();
 
 app.get("/products", async (req, res) => {
-  const productsList = await manager.getProducts();
-  const limit = Number(req.query.limit);
-  if (!limit) {
-    res.send(productsList);
-  } else {
-    const productListWithLimit = productsList.slice(0, limit);
-    res.send(productListWithLimit);
+  try {
+    const productsList = await manager.getProducts();
+    const limit = Number(req.query.limit);
+    if (!limit) {
+      res.send(productsList);
+    } else {
+      const productListWithLimit = productsList.slice(0, limit);
+      res.send(productListWithLimit);
+    }
+  } catch (error) {
+    console.log(error);
   }
 });
 
 app.get("/products/:pid", async (req, res) => {
-  let id = req.params.pid;
-  let productById = await manager.getProductById(Number(id));
+  try {
+    let id = req.params.pid;
+    let productById = await manager.getProductById(Number(id));
 
-  res.send(productById);
+    res.send(productById);
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 app.listen(8080, () => {
-  console.log("Servidor arriba en el puerto 8080");
+  try {
+    console.log("Servidor arriba en el puerto 8080");
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 //const env = async () => {
